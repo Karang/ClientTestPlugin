@@ -1,7 +1,7 @@
 [![Spout][Project Logo]][Website]
-What is SpoutAPI?
+What is ClientTestPlugin?
 -----------------
-SpoutAPI is the API for the Spout server and framework.
+ClientTestPlugin is a simple plugin to test SpoutClient as development continues.
 
 Copyright (c) 2011-2012, SpoutDev <http://www.spout.org>
 
@@ -23,11 +23,11 @@ View the latest [Javadoc].
 
 License
 -------
-SpoutAPI is licensed under [GNU Lesser General Public License Version 3][License], but with a provision that files are released under the MIT license 180 days after they are published. Please see the `LICENSE.txt` file for details.
+ClientTestPlugin is licensed under [GNU Lesser General Public License Version 3][License], but with a provision that files are released under the MIT license 180 days after they are published. Please see the `LICENSE.txt` file for details.
 
 Compiling
 ---------
-SpoutAPI uses Maven to handle its dependencies.
+ClientTestPlugin uses Maven to handle its dependencies.
 
 * Install [Maven 2 or 3](http://maven.apache.org/download.html)  
 * Checkout this repo and run: `mvn clean install`
