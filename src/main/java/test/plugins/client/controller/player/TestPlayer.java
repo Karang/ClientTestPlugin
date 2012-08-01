@@ -24,7 +24,7 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package test.plugins.client.entities;
+package test.plugins.client.controller.player;
 
 import org.spout.api.entity.component.Controller;
 import org.spout.api.entity.component.controller.PlayerController;
