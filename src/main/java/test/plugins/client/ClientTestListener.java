@@ -26,38 +26,20 @@
  */
 package test.plugins.client;
 
-import test.plugins.client.world.generator.FlatGenerator;
+import test.plugins.client.controller.player.TestPlayer;
 
-import org.spout.api.Engine;
-import org.spout.api.geo.World;
-import org.spout.api.geo.discrete.Point;
-import org.spout.api.geo.discrete.Transform;
-import org.spout.api.math.Quaternion;
-import org.spout.api.math.Vector3;
-import org.spout.api.plugin.CommonPlugin;
+import org.spout.api.event.EventHandler;
+import org.spout.api.event.Listener;
+import org.spout.api.event.Order;
+import org.spout.api.event.player.PlayerLoginEvent;
 
-public class ClientTestPlugin extends CommonPlugin {
-	private Engine engine;
-
-	@Override
-	public void onLoad() {
-		engine = getEngine();
-	}
-
-	@Override
-	public void onEnable() {
-		//Construct worlds
-		World test = engine.loadWorld("test_world", new FlatGenerator(8));
-		if (test.getAge() <= 0) {
-			test.setSpawnPoint(new Transform(new Point(test, 1, 9, 1), Quaternion.IDENTITY, Vector3.ONE));
+public class ClientTestListener implements Listener {
+	@EventHandler(order = Order.LATEST)
+	public void onPlayerLogin(PlayerLoginEvent event) {
+		if (!event.isAllowed()) {
+			return;
 		}
-		//Register events
-		engine.getEventManager().registerEvents(new ClientTestListener(), this);
-		getLogger().info("enabled.");
-	}
-
-	@Override
-	public void onDisable() {
-		getLogger().info("disabled.");
+		TestPlayer tester = new TestPlayer(event.getPlayer());
+		event.getPlayer().getEntity().setController(tester);
 	}
 }

@@ -26,21 +26,25 @@
  */
 package test.plugins.client.controller.player;
 
+import test.plugins.client.controller.TestControllerTypes;
+
 import org.spout.api.entity.component.Controller;
 import org.spout.api.entity.component.controller.PlayerController;
-import org.spout.api.entity.component.controller.type.ControllerType;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.player.Player;
 import org.spout.api.player.PlayerInputState;
 
 public class TestPlayer extends Controller implements PlayerController {
-	protected TestPlayer(ControllerType type) {
-		super(type);
+	protected final Player owner;
+
+	public TestPlayer(Player owner) {
+		super(TestControllerTypes.TEST_PLAYER);
+		this.owner = owner;
 	}
 
 	@Override
 	public Player getPlayer() {
-		return (Player) this;
+		return owner;
 	}
 
 	@Override

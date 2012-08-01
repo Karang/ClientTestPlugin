@@ -24,40 +24,13 @@
  * License and see <http://www.spout.org/SpoutDevLicenseV1.txt> for the full license,
  * including the MIT license.
  */
-package test.plugins.client;
+package test.plugins.client.controller;
 
-import test.plugins.client.world.generator.FlatGenerator;
+import org.spout.api.entity.component.Controller;
+import org.spout.api.entity.component.controller.type.EmptyConstructorControllerType;
 
-import org.spout.api.Engine;
-import org.spout.api.geo.World;
-import org.spout.api.geo.discrete.Point;
-import org.spout.api.geo.discrete.Transform;
-import org.spout.api.math.Quaternion;
-import org.spout.api.math.Vector3;
-import org.spout.api.plugin.CommonPlugin;
-
-public class ClientTestPlugin extends CommonPlugin {
-	private Engine engine;
-
-	@Override
-	public void onLoad() {
-		engine = getEngine();
-	}
-
-	@Override
-	public void onEnable() {
-		//Construct worlds
-		World test = engine.loadWorld("test_world", new FlatGenerator(8));
-		if (test.getAge() <= 0) {
-			test.setSpawnPoint(new Transform(new Point(test, 1, 9, 1), Quaternion.IDENTITY, Vector3.ONE));
-		}
-		//Register events
-		engine.getEventManager().registerEvents(new ClientTestListener(), this);
-		getLogger().info("enabled.");
-	}
-
-	@Override
-	public void onDisable() {
-		getLogger().info("disabled.");
+public class TestControllerType extends EmptyConstructorControllerType {
+	public TestControllerType(Class<? extends Controller> controllerClass, String name) {
+		super(controllerClass, name);
 	}
 }
