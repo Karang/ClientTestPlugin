@@ -43,6 +43,7 @@ public class ClientTestPlugin extends CommonPlugin {
 	public void onLoad() {
 		engine = getEngine();
 	}
+
 	@Override
 	public void onEnable() {
 		//Load our test world
