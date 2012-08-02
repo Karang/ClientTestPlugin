@@ -26,20 +26,23 @@
  */
 package test.plugins.client;
 
-import test.plugins.client.controller.player.TestPlayer;
+import test.plugins.client.controller.player.TestPlayerController;
 
+import org.spout.api.Client;
+import org.spout.api.Spout;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.Order;
-import org.spout.api.event.player.PlayerLoginEvent;
+import org.spout.api.event.player.ClientPlayerConnectedEvent;
+import org.spout.api.player.Player;
 
 public class ClientTestListener implements Listener {
 	@EventHandler(order = Order.LATEST)
-	public void onPlayerLogin(PlayerLoginEvent event) {
-		if (!event.isAllowed()) {
+	public void onClientConnect(ClientPlayerConnectedEvent event) {
+		if (!event.isCancelled()) {
 			return;
 		}
-		TestPlayer tester = new TestPlayer(event.getPlayer());
-		//event.getPlayer().getEntity().setController(tester);
+		Player player = ((Client) Spout.getEngine()).getActivePlayer();
+		player.setController(new TestPlayerController());
 	}
 }

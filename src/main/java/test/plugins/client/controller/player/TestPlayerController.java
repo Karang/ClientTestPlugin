@@ -33,18 +33,16 @@ import org.spout.api.entity.component.controller.PlayerController;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.player.Player;
 import org.spout.api.player.PlayerInputState;
-
-public class TestPlayer extends Controller implements PlayerController {
-	protected final Player owner;
-
-	public TestPlayer(Player owner) {
+//TODO Needs to extend PlayerController when API is fixed
+public class TestPlayerController extends Controller implements PlayerController {
+	public TestPlayerController() {
 		super(TestControllerTypes.TEST_PLAYER);
-		this.owner = owner;
 	}
 
+	//TODO will be removed in API
 	@Override
 	public Player getPlayer() {
-		return owner;
+		return null;
 	}
 
 	@Override

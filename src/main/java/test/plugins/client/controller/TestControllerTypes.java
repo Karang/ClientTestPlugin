@@ -26,12 +26,12 @@
  */
 package test.plugins.client.controller;
 
-import test.plugins.client.controller.player.TestPlayer;
+import test.plugins.client.controller.player.TestPlayerController;
 
 /**
  * Lookup for all our test controllers.
  */
 public class TestControllerTypes {
 	// Player
-	public static final TestControllerType TEST_PLAYER = new TestControllerType(TestPlayer.class, "Test Player");
+	public static final TestControllerType TEST_PLAYER = new TestControllerType(TestPlayerController.class, "Test Player");
 }
