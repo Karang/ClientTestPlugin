@@ -40,6 +40,6 @@ public class ClientTestListener implements Listener {
 			return;
 		}
 		TestPlayer tester = new TestPlayer(event.getPlayer());
-		event.getPlayer().getEntity().setController(tester);
+		//event.getPlayer().getEntity().setController(tester);
 	}
 }
