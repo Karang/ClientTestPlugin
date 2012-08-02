@@ -42,12 +42,12 @@ public class TestPlayerController extends Controller implements PlayerController
 	//TODO will be removed in API
 	@Override
 	public Player getPlayer() {
-		return null;
+		return ((Player) getParent());
 	}
 
 	@Override
 	public void onAttached() {
-
+		((Player) this.getParent()).setDisplayName("Spouty 2");
 	}
 
 	@Override
