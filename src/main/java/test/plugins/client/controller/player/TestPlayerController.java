@@ -62,12 +62,11 @@ public class TestPlayerController extends BasicController implements PlayerContr
 	public void onTick(float dt) {
 		//poll input
 		input = getParent().input();
+		pos = getParent().getTransform().getPosition();
 		//Print out if it moves, will be one tick late at the start
-		if (pos != null && !pos.equals(getParent().getLastTransform().getPosition())) {
+		if (pos != null && getParent().getLastTransform() == null || !pos.equals(getParent().getLastTransform().getPosition())) {
 			Spout.log(pos.toString());
 		}
-		pos = getParent().getTransform().getPosition();
-
 		if (input.getForward()) {
 			pos = pos.add(getParent().getTransform().forwardVector());
 		}
