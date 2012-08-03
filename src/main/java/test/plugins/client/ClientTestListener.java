@@ -43,6 +43,6 @@ public class ClientTestListener implements Listener {
 			return;
 		}
 		Player player = ((Client) Spout.getEngine()).getActivePlayer();
-		player.setController(new TestPlayerController());
+		player.setController(new TestPlayerController(player));
 	}
 }

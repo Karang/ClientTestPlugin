@@ -28,31 +28,28 @@ package test.plugins.client.controller.player;
 
 import test.plugins.client.controller.TestControllerTypes;
 
-import org.spout.api.entity.component.Controller;
+import org.spout.api.entity.component.controller.BasicController;
 import org.spout.api.entity.component.controller.PlayerController;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.player.Player;
 import org.spout.api.player.PlayerInputState;
-//TODO Needs to extend PlayerController when API is fixed
-public class TestPlayerController extends Controller implements PlayerController {
-	public TestPlayerController() {
-		super(TestControllerTypes.TEST_PLAYER);
-	}
 
-	//TODO will be removed in API
-	@Override
-	public Player getPlayer() {
-		return ((Player) getParent());
+public class TestPlayerController extends BasicController implements PlayerController {
+	private final Player player;
+
+	public TestPlayerController(Player player) {
+		super (TestControllerTypes.TEST_PLAYER);
+		this.player = player;
 	}
 
 	@Override
 	public void onAttached() {
-		((Player) this.getParent()).setDisplayName("Spouty 2");
+		getParent().setDisplayName("Spouty 2");
 	}
 
 	@Override
 	public void onTick(float dt) {
-		PlayerInputState input = getPlayer().input();
+		PlayerInputState input = getParent().input();
 
 		Point pos = getParent().getTransform().getPosition();
 
@@ -63,5 +60,10 @@ public class TestPlayerController extends Controller implements PlayerController
 		if (input.getBackward()) {
 			pos = pos.subtract(getParent().getTransform().forwardVector());
 		}
+	}
+
+	@Override
+	public Player getParent() {
+		return player;
 	}
 }
