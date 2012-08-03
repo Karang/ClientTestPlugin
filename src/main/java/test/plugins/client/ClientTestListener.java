@@ -42,7 +42,6 @@ public class ClientTestListener implements Listener {
 		if (event.isCancelled()) {
 			return;
 		}
-		Player player = ((Client) Spout.getEngine()).getActivePlayer();
-		player.setController(new TestPlayerController(player));
+		((Client) Spout.getEngine()).getActivePlayer().setController(new TestPlayerController());
 	}
 }

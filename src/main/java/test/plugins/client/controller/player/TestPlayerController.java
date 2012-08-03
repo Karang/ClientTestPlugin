@@ -40,14 +40,12 @@ import org.spout.api.render.CameraComponent;
 
 public class TestPlayerController extends BasicController implements PlayerController {
 	private final CameraComponent camera;
-	private final Player player;
 	private PlayerInputState input;
 	private Point pos;
 
-	public TestPlayerController(Player player) {
+	public TestPlayerController() {
 		super (TestControllerTypes.TEST_PLAYER);
 		this.camera = new CameraComponent();
-		this.player = player;
 		if (Spout.getPlatform() == Platform.CLIENT) {
 			((Client) Spout.getEngine()).setActiveCamera(camera);
 		}
@@ -75,6 +73,6 @@ public class TestPlayerController extends BasicController implements PlayerContr
 
 	@Override
 	public Player getParent() {
-		return player;
+		return (super.getParent() instanceof Player) ? (Player) super.getParent() : null;
 	}
 }
