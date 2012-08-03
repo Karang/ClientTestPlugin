@@ -33,9 +33,12 @@ import org.spout.api.entity.component.controller.PlayerController;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.player.Player;
 import org.spout.api.player.PlayerInputState;
+import org.spout.api.render.CameraComponent;
 
 public class TestPlayerController extends BasicController implements PlayerController {
 	private final Player player;
+	private PlayerInputState input;
+	private Point pos;
 
 	public TestPlayerController(Player player) {
 		super (TestControllerTypes.TEST_PLAYER);
@@ -45,13 +48,13 @@ public class TestPlayerController extends BasicController implements PlayerContr
 	@Override
 	public void onAttached() {
 		getParent().setDisplayName("Spouty 2");
+		getParent().attachComponent(new CameraComponent());
 	}
 
 	@Override
 	public void onTick(float dt) {
-		PlayerInputState input = getParent().input();
-
-		Point pos = getParent().getTransform().getPosition();
+		input = getParent().input();
+		pos = getParent().getTransform().getPosition();
 
 		if (input.getForward()) {
 			pos = pos.add(getParent().getTransform().forwardVector());
