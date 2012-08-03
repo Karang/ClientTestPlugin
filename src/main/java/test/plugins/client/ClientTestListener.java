@@ -39,7 +39,7 @@ import org.spout.api.player.Player;
 public class ClientTestListener implements Listener {
 	@EventHandler(order = Order.LATEST)
 	public void onClientConnect(ClientPlayerConnectedEvent event) {
-		if (!event.isCancelled()) {
+		if (event.isCancelled()) {
 			return;
 		}
 		Player player = ((Client) Spout.getEngine()).getActivePlayer();
