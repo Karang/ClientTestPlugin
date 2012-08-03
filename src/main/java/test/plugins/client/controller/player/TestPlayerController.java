@@ -28,21 +28,29 @@ package test.plugins.client.controller.player;
 
 import test.plugins.client.controller.TestControllerTypes;
 
+import org.spout.api.Client;
+import org.spout.api.Spout;
 import org.spout.api.entity.component.controller.BasicController;
 import org.spout.api.entity.component.controller.PlayerController;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.player.Player;
 import org.spout.api.player.PlayerInputState;
+import org.spout.api.plugin.Platform;
 import org.spout.api.render.CameraComponent;
 
 public class TestPlayerController extends BasicController implements PlayerController {
+	private final CameraComponent camera;
 	private final Player player;
 	private PlayerInputState input;
 	private Point pos;
 
 	public TestPlayerController(Player player) {
 		super (TestControllerTypes.TEST_PLAYER);
+		this.camera = new CameraComponent();
 		this.player = player;
+		if (Spout.getPlatform() == Platform.CLIENT) {
+			((Client) Spout.getEngine()).setActiveCamera(camera);
+		}
 	}
 
 	@Override
