@@ -34,6 +34,10 @@ import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.Order;
 import org.spout.api.event.player.ClientPlayerConnectedEvent;
+import org.spout.api.geo.discrete.Point;
+import org.spout.api.geo.discrete.Transform;
+import org.spout.api.math.Quaternion;
+import org.spout.api.math.Vector3;
 import org.spout.api.player.Player;
 
 public class ClientTestListener implements Listener {
@@ -42,6 +46,8 @@ public class ClientTestListener implements Listener {
 		if (event.isCancelled()) {
 			return;
 		}
-		((Client) Spout.getEngine()).getActivePlayer().setController(new TestPlayerController());
+		Player player = ((Client) Spout.getEngine()).getActivePlayer();
+		player.setController(new TestPlayerController());
+		player.setTransform(new Transform(new Point(Spout.getEngine().getDefaultWorld(), 1, 9, 1), Quaternion.IDENTITY, Vector3.ONE));
 	}
 }

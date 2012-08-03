@@ -53,13 +53,19 @@ public class TestPlayerController extends BasicController implements PlayerContr
 
 	@Override
 	public void onAttached() {
+		Spout.log("TestPlayer attached to: " + getParent().toString());
 		getParent().setDisplayName("Spouty 2");
 		getParent().attachComponent(new CameraComponent());
 	}
 
 	@Override
 	public void onTick(float dt) {
+		//poll input
 		input = getParent().input();
+		//Print out if it moves, will be one tick late at the start
+		if (pos != null && !pos.equals(getParent().getLastTransform().getPosition())) {
+			Spout.log(pos.toString());
+		}
 		pos = getParent().getTransform().getPosition();
 
 		if (input.getForward()) {
