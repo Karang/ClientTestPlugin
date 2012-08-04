@@ -55,7 +55,7 @@ public class TestPlayerController extends BasicController implements PlayerContr
 	public void onAttached() {
 		Spout.log("TestPlayer attached to: " + getParent().toString());
 		getParent().setDisplayName("Spouty 2");
-		getParent().attachComponent(new CameraComponent());
+		getParent().addComponent(CameraComponent.class);
 	}
 
 	@Override
