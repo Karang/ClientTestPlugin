@@ -48,7 +48,7 @@ public class FlatGenerator implements WorldGenerator {
 		for (int dx = x; dx < x + 16; ++dx) {
 			for (int dz = z; dz < z + 16; ++dz) {
 				final int startY = chunkY << Chunk.BLOCKS.BITS;
-				final int endY = Math.min(Chunk.BLOCKS.SIZE, (int)((Math.sin(Math.toRadians((dx / 16.0) * 360)) * (height / 2)) + (.5 * height)));
+				final int endY = Math.min(Chunk.BLOCKS.SIZE + startY, (int)((Math.sin(Math.toRadians((dx / 16.0) * 360)) * (height / 2)) + (.5 * height)));
 				for (int y = startY; y < endY; y++) {
 					if (y <= 0) {
 						blockData.set(dx, y, dz, BlockMaterial.UNBREAKABLE.getId());
