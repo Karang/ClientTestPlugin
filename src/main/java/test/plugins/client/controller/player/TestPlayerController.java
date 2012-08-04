@@ -39,23 +39,22 @@ import org.spout.api.plugin.Platform;
 import org.spout.api.render.CameraComponent;
 
 public class TestPlayerController extends BasicController implements PlayerController {
-	private final CameraComponent camera;
 	private PlayerInputState input;
 	private Point pos;
 
 	public TestPlayerController() {
 		super (TestControllerTypes.TEST_PLAYER);
-		this.camera = new CameraComponent();
-		if (Spout.getPlatform() == Platform.CLIENT) {
-			((Client) Spout.getEngine()).setActiveCamera(camera);
-		}
+		
 	}
 
 	@Override
 	public void onAttached() {
 		Spout.log("TestPlayer attached to: " + getParent().toString());
 		getParent().setDisplayName("Spouty 2");
-		getParent().addComponent(CameraComponent.class);
+		CameraComponent camera = (CameraComponent) getParent().addComponent(CameraComponent.class);
+		if (Spout.getPlatform() == Platform.CLIENT) {
+			((Client) Spout.getEngine()).setActiveCamera(camera);
+		}
 	}
 
 	@Override
