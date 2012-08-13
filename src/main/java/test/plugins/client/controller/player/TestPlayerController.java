@@ -30,28 +30,26 @@ import test.plugins.client.controller.TestControllerTypes;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
-import org.spout.api.entity.component.controller.BasicController;
-import org.spout.api.entity.component.controller.PlayerController;
+import org.spout.api.entity.Player;
+import org.spout.api.entity.controller.PlayerController;
+import org.spout.api.entity.state.PlayerInputState;
 import org.spout.api.geo.discrete.Point;
-import org.spout.api.player.Player;
-import org.spout.api.player.PlayerInputState;
 import org.spout.api.plugin.Platform;
 import org.spout.api.render.CameraComponent;
 
-public class TestPlayerController extends BasicController implements PlayerController {
+public class TestPlayerController extends PlayerController {
 	private PlayerInputState input;
 	private Point pos;
 
 	public TestPlayerController() {
-		super (TestControllerTypes.TEST_PLAYER);
-		
+		super(TestControllerTypes.TEST_PLAYER);
 	}
 
 	@Override
 	public void onAttached() {
 		Spout.log("TestPlayer attached to: " + getParent().toString());
 		getParent().setDisplayName("Spouty 2");
-		CameraComponent camera = (CameraComponent) getParent().addComponent(CameraComponent.class);
+		CameraComponent camera = addComponent(new CameraComponent());
 		if (Spout.getPlatform() == Platform.CLIENT) {
 			((Client) Spout.getEngine()).setActiveCamera(camera);
 		}

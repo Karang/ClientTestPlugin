@@ -26,8 +26,8 @@
  */
 package test.plugins.client.controller;
 
-import org.spout.api.entity.component.Controller;
-import org.spout.api.entity.component.controller.type.EmptyConstructorControllerType;
+import org.spout.api.entity.Controller;
+import org.spout.api.entity.controller.type.EmptyConstructorControllerType;
 
 public class TestControllerType extends EmptyConstructorControllerType {
 	public TestControllerType(Class<? extends Controller> controllerClass, String name) {

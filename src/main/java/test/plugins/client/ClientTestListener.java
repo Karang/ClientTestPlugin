@@ -30,6 +30,7 @@ import test.plugins.client.controller.player.TestPlayerController;
 
 import org.spout.api.Client;
 import org.spout.api.Spout;
+import org.spout.api.entity.Player;
 import org.spout.api.event.EventHandler;
 import org.spout.api.event.Listener;
 import org.spout.api.event.Order;
@@ -38,7 +39,6 @@ import org.spout.api.geo.discrete.Point;
 import org.spout.api.geo.discrete.Transform;
 import org.spout.api.math.Quaternion;
 import org.spout.api.math.Vector3;
-import org.spout.api.player.Player;
 
 public class ClientTestListener implements Listener {
 	@EventHandler(order = Order.LATEST)
