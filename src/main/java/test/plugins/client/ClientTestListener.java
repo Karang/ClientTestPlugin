@@ -46,8 +46,8 @@ public class ClientTestListener implements Listener {
 		if (event.isCancelled()) {
 			return;
 		}
-		Player player = ((Client) Spout.getEngine()).getActivePlayer();
-		player.setController(new TestPlayerController());
-		player.setTransform(new Transform(new Point(Spout.getEngine().getDefaultWorld(), 1, 9, 1), Quaternion.IDENTITY, Vector3.ONE));
+		Player player = ((Client) Spout.getEngine()).getActivePlayer().getPlayer();
+		player.getParent().setController(new TestPlayerController());
+		player.getParent().setTransform(new Transform(new Point(Spout.getEngine().getDefaultWorld(), 1, 9, 1), Quaternion.IDENTITY, Vector3.ONE));
 	}
 }

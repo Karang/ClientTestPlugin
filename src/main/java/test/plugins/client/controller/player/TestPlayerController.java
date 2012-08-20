@@ -26,18 +26,17 @@
  */
 package test.plugins.client.controller.player;
 
-import test.plugins.client.controller.TestControllerTypes;
-
 import org.spout.api.Client;
 import org.spout.api.Spout;
-import org.spout.api.entity.Player;
-import org.spout.api.entity.controller.PlayerController;
+import org.spout.api.entity.BaseController;
 import org.spout.api.entity.state.PlayerInputState;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.plugin.Platform;
 import org.spout.api.render.CameraComponent;
 
-public class TestPlayerController extends PlayerController {
+import test.plugins.client.controller.TestControllerTypes;
+
+public class TestPlayerController extends BaseController {
 	private PlayerInputState input;
 	private Point pos;
 
@@ -48,8 +47,8 @@ public class TestPlayerController extends PlayerController {
 	@Override
 	public void onAttached() {
 		Spout.log("TestPlayer attached to: " + getParent().toString());
-		getParent().setDisplayName("Spouty 2");
-		CameraComponent camera = addComponent(new CameraComponent());
+		getPlayer().setDisplayName("Spouty 2");
+		CameraComponent camera = getParent().addComponent(new CameraComponent());
 		if (Spout.getPlatform() == Platform.CLIENT) {
 			((Client) Spout.getEngine()).setActiveCamera(camera);
 		}
@@ -58,7 +57,7 @@ public class TestPlayerController extends PlayerController {
 	@Override
 	public void onTick(float dt) {
 		//poll input
-		input = getParent().input();
+		input = getPlayer().input();
 		pos = getParent().getTransform().getPosition();
 		//Print out if it moves, will be one tick late at the start
 		if (pos != null && getParent().getLastTransform() == null || !pos.equals(getParent().getLastTransform().getPosition())) {
@@ -72,9 +71,5 @@ public class TestPlayerController extends PlayerController {
 			pos = pos.subtract(getParent().getTransform().forwardVector());
 		}
 	}
-
-	@Override
-	public Player getParent() {
-		return (super.getParent() instanceof Player) ? (Player) super.getParent() : null;
-	}
+	
 }
