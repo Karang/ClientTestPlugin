@@ -51,8 +51,6 @@ public class ClientTestPlugin extends CommonPlugin {
 		if (test.getAge() <= 0) {
 			test.setSpawnPoint(new Transform(new Point(test, 1, 9, 1), Quaternion.IDENTITY, Vector3.ONE));
 		}
-		//Register events
-		engine.getEventManager().registerEvents(new ClientTestListener(), this);
 		getLogger().info("enabled.");
 	}
 
