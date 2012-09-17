@@ -26,10 +26,9 @@
  */
 package test.plugins.client.world.generator;
 
+import org.spout.api.generator.GeneratorPopulator;
 import org.spout.api.generator.Populator;
 import org.spout.api.generator.WorldGenerator;
-import org.spout.api.generator.biome.BiomeManager;
-import org.spout.api.generator.biome.EmptyBiomeManager;
 import org.spout.api.geo.World;
 import org.spout.api.geo.cuboid.Chunk;
 import org.spout.api.material.BlockMaterial;
@@ -43,12 +42,12 @@ public class FlatGenerator implements WorldGenerator {
 	}
 
 	@Override
-	public BiomeManager generate(CuboidShortBuffer blockData, int chunkX, int chunkY, int chunkZ) {
+	public void generate(CuboidShortBuffer blockData, int chunkX, int chunkY, int chunkZ, World world) {
 		int x = chunkX << 4, z = chunkZ << 4;
 		for (int dx = x; dx < x + 16; ++dx) {
 			for (int dz = z; dz < z + 16; ++dz) {
 				final int startY = chunkY << Chunk.BLOCKS.BITS;
-				final int endY = Math.min(Chunk.BLOCKS.SIZE + startY, (int) ((Math.sin(Math.toRadians((dx / 16.0) * 360)) * (height / 2)) + (.5 * height)));
+				final int endY = Math.min(Chunk.BLOCKS.SIZE + startY, height);
 				for (int y = startY; y < endY; y++) {
 					if (y <= 0) {
 						blockData.set(dx, y, dz, BlockMaterial.UNBREAKABLE.getId());
@@ -58,7 +57,6 @@ public class FlatGenerator implements WorldGenerator {
 				}
 			}
 		}
-		return new EmptyBiomeManager(chunkX, chunkY, chunkZ);
 	}
 
 	@Override
@@ -67,8 +65,13 @@ public class FlatGenerator implements WorldGenerator {
 	}
 
 	@Override
+	public GeneratorPopulator[] getGeneratorPopulators() {
+		return new GeneratorPopulator[0];
+	}
+
+	@Override
 	public String getName() {
-		return "ClientTestFlat";
+		return "TestFlat";
 	}
 
 	@Override

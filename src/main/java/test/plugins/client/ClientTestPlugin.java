@@ -47,12 +47,10 @@ public class ClientTestPlugin extends CommonPlugin {
 	@Override
 	public void onEnable() {
 		//Construct worlds
-		World test = engine.loadWorld("test_world", new FlatGenerator(8));
+		World test = engine.loadWorld("test_world", new FlatGenerator(2));
 		if (test.getAge() <= 0) {
-			test.setSpawnPoint(new Transform(new Point(test, 1, 9, 1), Quaternion.IDENTITY, Vector3.ONE));
+			test.setSpawnPoint(new Transform(new Point(test, 1, 3, 1), Quaternion.IDENTITY, Vector3.ONE));
 		}
-		//Register events
-		engine.getEventManager().registerEvents(new ClientTestListener(), this);
 		getLogger().info("enabled.");
 	}
 
