@@ -29,6 +29,8 @@ package test.plugins.client;
 import test.plugins.client.world.generator.FlatGenerator;
 
 import org.spout.api.Engine;
+import org.spout.api.Spout;
+import org.spout.api.geo.LoadOption;
 import org.spout.api.geo.World;
 import org.spout.api.geo.discrete.Point;
 import org.spout.api.geo.discrete.Transform;
@@ -48,9 +50,12 @@ public class ClientTestPlugin extends CommonPlugin {
 	public void onEnable() {
 		//Construct worlds
 		World test = engine.loadWorld("test_world", new FlatGenerator(2));
+		Spout.getEngine().setDefaultWorld(test);
 		if (test.getAge() <= 0) {
 			test.setSpawnPoint(new Transform(new Point(test, 1, 3, 1), Quaternion.IDENTITY, Vector3.ONE));
 		}
+		
+		test.createAndSpawnEntity(test.getSpawnPoint().getPosition(), null, LoadOption.LOAD_GEN);
 		getLogger().info("enabled.");
 	}
 
